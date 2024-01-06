@@ -19,7 +19,7 @@ const server = http.createServer((req, res) => {
         <style>
           body {
             background-color: ${backgroundColor};
-            color: #fff; /* Set text color to contrast with the background */
+            color: #fff; 
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 50px;

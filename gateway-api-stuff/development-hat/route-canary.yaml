@@ -1,0 +1,38 @@
+
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
+metadata:
+  name: my-route
+  namespace: development
+spec:
+  parentRefs:
+  - name: shared-public-gateway-my-dummy-colored-app
+    namespace: infrastructure
+  hostnames:
+  - "my-dummy-colored-app.net"
+  rules:
+  - matches:
+    - path:
+        value: /
+    - filters:
+        - type: RequestHeaderModifier
+          requestHeaderModifier:
+            add:
+              - name: my-header
+                value: foo
+        - type: URLRewrite
+          urlRewrite:
+            # hostname: elsewhere.example
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: /newpath
+    backendRefs:
+    - name: dummy-v1-pink
+      port: 3000
+  - matches:
+    - headers:
+      - name: traffic
+        value: test
+    backendRefs:
+    - name: dummy-v2-pink
+      port: 3000

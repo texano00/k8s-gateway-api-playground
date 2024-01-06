@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: ghcr.io/texano00/k8s-gateway-api-playground/dummy-app
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "1.0.0-pink"
 
@@ -20,7 +20,7 @@ ingress:
   annotations:
     kubernetes.io/ingress.class: gce
   hosts:
-    - host: "*.net"
+    - host: "my-dummy-colored-app-exposed-by-ingress.net"
       paths:
         - path: /
           pathType: ImplementationSpecific

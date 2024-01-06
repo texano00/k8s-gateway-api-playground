@@ -8,16 +8,21 @@ spec:
   listeners:
   - name: http
     protocol: HTTP
-    hostname: my-dummy-colored-app.net
+    hostname: my-dummy-colored-app-exposed-by-gateway-api.net
     port: 80
     allowedRoutes:
-      kinds:
-      - kind: HTTPRoute
       namespaces:
-        from: Selector
-        selector:
-          matchLabels:
-            shared-gateway-access: "true"
+        from: "All"
+    # allowedRoutes:
+    #   kinds:
+    #   - kind: HTTPRoute
+      # namespaces:
+      #   from: Selector
+      #   selector:
+      #     matchLabels:
+      #       shared-gateway-access: "true"
     # tls:
     #   certificateRefs:
     #   - name: foo-example-com
+
+

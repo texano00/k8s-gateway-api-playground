@@ -9,27 +9,27 @@ spec:
   - name: shared-public-gateway-my-dummy-colored-app
     namespace: infrastructure
   hostnames:
-  - "my-dummy-colored-app.net"
+   - "my-dummy-colored-app-exposed-by-gateway-api.net"
   rules:
   - matches:
     - path:
         value: /
-    - filters:
-        - type: RequestHeaderModifier
-          requestHeaderModifier:
-            add:
-              - name: my-header
-                value: foo
-        - type: URLRewrite
-          urlRewrite:
-            # hostname: elsewhere.example
-            path:
-              type: ReplacePrefixMatch
-              replacePrefixMatch: /newpath
+    filters:
+      - type: RequestHeaderModifier
+        requestHeaderModifier:
+          add:
+            - name: my-header
+              value: foo
+      - type: URLRewrite
+        urlRewrite:
+          # hostname: elsewhere.example
+          path:
+            type: ReplacePrefixMatch
+            replacePrefixMatch: /newpath
     backendRefs:
     - name: dummy-v1-pink
       port: 3000
-      weight: 90
-    - name: dummy-v2-pink
+      weight: 50
+    - name: dummy-v2-green
       port: 3000
-      weight: 10
+      weight: 50

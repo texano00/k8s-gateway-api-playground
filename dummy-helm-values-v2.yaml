@@ -1,0 +1,20 @@
+replicaCount: 1
+
+image:
+  repository: ghcr.io/texano00/k8s-gateway-api-playground/dummy-app
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "2.0.0-green"
+
+fullnameOverride: "dummy-v2-green"
+
+serviceAccount:
+  create: false
+
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false

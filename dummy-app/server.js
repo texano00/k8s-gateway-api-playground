@@ -15,7 +15,7 @@ const server = http.createServer((req, res) => {
       <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Colored Page</title>
+        <title>Colored Dummy Page</title>
         <style>
           body {
             background-color: ${backgroundColor};

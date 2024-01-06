@@ -1,0 +1,61 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+# GitHub recommends pinning actions to a commit SHA.
+# To get a newer version, you will need to update the SHA.
+# You can also reference a tag or branch, but the action may change without warning.
+
+name: "[CI/CD] App"
+
+on:
+  push:
+    branches: ['main']
+    paths:
+    - 'dummy-app/**'
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: texano00/dummy-app
+
+jobs:
+  build-and-push-image:
+    if: ${{ !contains(github.event.head_commit.message, '#skip-actions') }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    defaults:
+      run:
+        working-directory: dummy-app
+    environment: production
+
+    steps:
+      # - uses: actions/setup-node@v4
+      #   with:
+      #     node-version: 20
+      # - run: npm ci
+
+      - name: Get version
+        id: metadata
+        run: |
+            version=$(cat .version)
+            echo "version=${version}" >> $GITHUB_OUTPUT
+              
+      - name: docker build and push
+        id: build_and_push
+        run: |
+          built_image="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.metadata.outputs.version }}"
+
+          docker login ${{ env.REGISTRY }} -u ${{ secrets.GHCR_USERNAME }} -p ${{ secrets.GHCR_PASSWORD }}
+          if docker manifest inspect ${built_image} > /dev/null; then
+            echo "already exist -> do not push"
+            exit 1
+          else
+            echo "does not exist -> push"
+            docker build . -t ${built_image}
+            docker push ${built_image}  
+          fi
+
+          

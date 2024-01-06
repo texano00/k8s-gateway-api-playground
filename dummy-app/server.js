@@ -6,7 +6,10 @@ const version = fs.readFileSync('.version', 'utf8');
 const server = http.createServer((req, res) => {
     // Set the content type to HTML
     res.setHeader('Content-Type', 'text/html');
-    const backgroundColor = '#fc1212'; // Set your desired background color here
+    const backgroundColor = 'green'; // Set your desired background color here
+
+    // Log access details to stdout
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
 
     // Respond with a basic HTML page with a colored background
     res.end(`

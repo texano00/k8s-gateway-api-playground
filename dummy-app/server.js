@@ -8,7 +8,7 @@ const server = http.createServer((req, res) => {
     res.setHeader('Content-Type', 'text/html');
     const backgroundColor = 'green'; // Set your desired background color here
     const headers = JSON.stringify(req.headers, null, 2);
-    
+    const path = req.url;
     // Log access details to stdout
     console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
 
@@ -34,6 +34,8 @@ const server = http.createServer((req, res) => {
       <body>
         <h1>Welcome to My Dummy Colored Page!</h1>
         <h2>${version}</h2>
+        <p>HTTP Path: ${path}</p>
+        <p>HTTP Headers: ${path}</p>
         <pre>${headers}</pre>
 
       </body>

@@ -25,6 +25,18 @@ spec:
   - matches:
     - path:
         value: /
+    - filters:
+        - type: RequestHeaderModifier
+          requestHeaderModifier:
+            add:
+              - name: my-header
+                value: foo
+        - type: URLRewrite
+          urlRewrite:
+            # hostname: elsewhere.example
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: /newpath
     backendRefs:
     - name: dummy-v1-pink
       port: 3000

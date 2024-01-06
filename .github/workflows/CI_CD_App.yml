@@ -32,10 +32,6 @@ jobs:
     environment: production
 
     steps:
-      # - uses: actions/setup-node@v4
-      #   with:
-      #     node-version: 20
-      # - run: npm ci
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -51,13 +47,6 @@ jobs:
           built_image="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.metadata.outputs.version }}"
 
           docker login ${{ env.REGISTRY }} -u ${{ secrets.GHCR_USERNAME }} -p ${{ secrets.GHCR_PASSWORD }}
-          if docker manifest inspect ${built_image} > /dev/null; then
-            echo "already exist -> do not push"
-            exit 1
-          else
-            echo "does not exist -> push"
-            docker build . -t ${built_image}
-            docker push ${built_image}  
-          fi
 
-          
+          docker build . -t ${built_image}
+          docker push ${built_image}  

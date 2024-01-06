@@ -6,7 +6,7 @@ const version = fs.readFileSync('.version', 'utf8');
 const server = http.createServer((req, res) => {
     // Set the content type to HTML
     res.setHeader('Content-Type', 'text/html');
-    const backgroundColor = 'green'; // Set your desired background color here
+    const backgroundColor = 'pink'; // Set your desired background color here
     const headers = JSON.stringify(req.headers, null, 2);
     const path = req.url;
     // Log access details to stdout

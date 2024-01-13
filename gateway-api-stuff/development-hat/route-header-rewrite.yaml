@@ -20,5 +20,5 @@ spec:
             - name: my-header
               value: foo
     backendRefs:
-    - name: dummy-v1-pink
+    - name: dummy-v1-blue
       port: 3000

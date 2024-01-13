@@ -14,5 +14,5 @@ spec:
     - path:
         value: /
     backendRefs:
-    - name: dummy-v1-pink
+    - name: dummy-v1-blue
       port: 3000

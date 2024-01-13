@@ -4,9 +4,9 @@ image:
   repository: ghcr.io/texano00/k8s-gateway-api-playground/dummy-app
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "1.0.0-pink"
+  tag: "1.0.0-blue"
 
-fullnameOverride: "dummy-v1-pink"
+fullnameOverride: "dummy-v1-blue"
 
 serviceAccount:
   create: false

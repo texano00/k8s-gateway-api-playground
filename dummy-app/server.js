@@ -1,19 +1,19 @@
-const http = require('http');
-const fs = require('fs');
+const http = require("http");
+const fs = require("fs");
 
-const version = fs.readFileSync('.version', 'utf8');
+const version = fs.readFileSync(".version", "utf8");
 
 const server = http.createServer((req, res) => {
-    // Set the content type to HTML
-    res.setHeader('Content-Type', 'text/html');
-    const backgroundColor = 'pink'; // Set your desired background color here
-    const headers = JSON.stringify(req.headers, null, 2);
-    const path = req.url;
-    // Log access details to stdout
-    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  // Set the content type to HTML
+  res.setHeader("Content-Type", "text/html");
+  const backgroundColor = "blue"; // Set your desired background color here
+  const headers = JSON.stringify(req.headers, null, 2);
+  const path = req.url;
+  // Log access details to stdout
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
 
-    // Respond with a basic HTML page with a colored background
-    res.end(`
+  // Respond with a basic HTML page with a colored background
+  res.end(`
       <!DOCTYPE html>
       <html lang="en">
       <head>
@@ -41,10 +41,10 @@ const server = http.createServer((req, res) => {
       </body>
       </html>
     `);
-  });
-  
-  const PORT = 3000;
+});
 
-  server.listen(PORT, () => {
-    console.log(`Server is running at http://localhost:${PORT}/`);
-  });
+const PORT = 3000;
+
+server.listen(PORT, () => {
+  console.log(`Server is running at http://localhost:${PORT}/`);
+});

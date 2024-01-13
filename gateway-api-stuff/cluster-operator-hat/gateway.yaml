@@ -22,7 +22,8 @@ spec:
       #     matchLabels:
       #       shared-gateway-access: "true"
     # tls:
-    #   certificateRefs:
-    #   - name: foo-example-com
-
-
+      # certificateRefs:
+      # - kind: Secret
+      #   group: ""
+      #   name: wildcard-domain-net-cert
+      #   namespace: infrastructure-certs # <-- potential different ns

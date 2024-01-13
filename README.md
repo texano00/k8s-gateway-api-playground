@@ -9,10 +9,13 @@ Let's play with GatewayAPI!
 
 # Experience path
 ## Primer
-1. Connect to GKE Kubernetes cluster
+1. Provision GKE Kubernetes cluster
+2. Connect to GKE Kubernetes cluster
 
 ## Ingress exercise
-1. First exercise, use Ingress API to expose in a basic way the "blue" application
+First exercise is about use Ingress API to expose in a basic way the "blue" application with some limitations.
+
+1. Basic aim using Ingress API
 
     ```
     +-----------------+          +---------------------+          +------+
@@ -38,10 +41,14 @@ Let's play with GatewayAPI!
 
 5. Limitations\
    Ex. \
-   Q: How can I add some http url rewrite or header manipulation?\
+   Q: How can I add some http url rewrites or header manipulations?\
    A: You can't!
 
+   We already talked in previou slides on how we survived (provider specific ingress controllers).
+
 ## Gateway API exercise
+Let's now see how Gateway API solved a lot of Ingress API limitations (ex. more advanced native http rules, more scalable and role oriented) in a more real scenario.
+
 1. Install v2-green version without any Ingresses
     ```
     helm upgrade -i -f dummy-helm-values-v2.yaml dummy-release-v2-green dummy-helm -n development --create-namespace

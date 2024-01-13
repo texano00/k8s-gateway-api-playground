@@ -10,7 +10,8 @@ Let's play with GatewayAPI!
 # Experience path
 ## Primer
 1. Provision GKE Kubernetes cluster
-2. Connect to GKE Kubernetes cluster
+2. Connect to GKE Kubernetes cluster\
+    `gcloud container clusters get-credentials gateway-api-plyground --region europe-west1 --project conf42-2024`
 
 ## Ingress exercise
 First exercise is about use Ingress API to expose in a basic way the "blue" application with some limitations.
